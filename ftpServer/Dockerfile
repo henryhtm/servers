@@ -1,4 +1,4 @@
-FROM henryhtm/commontools:ubuntu18.04
+FROM henryhtm/servers:ubuntu18.04
 RUN apt-get install -y vsftpd \
     && mkdir /mnt/ftp-dir/data-dir -pv \
     && chmod 777 /mnt/ftp-dir/data-dir \
