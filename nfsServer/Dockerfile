@@ -1,4 +1,4 @@
-FROM henryhtm/commontools:ubuntu18.04
+FROM henryhtm/servers:ubuntu18.04
 
 #install nfs server
 RUN  apt-get install -y nfs-common nfs-kernel-server
