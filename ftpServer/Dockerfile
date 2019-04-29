@@ -5,8 +5,8 @@ RUN apt-get install -y vsftpd \
     && mkdir /etc/vsftpd/user_config -pv \
     && rm /var/lib/apt/* -rf
 
-COPY file/adduser.sh /root/add_ftp_user.sh
+COPY file/ftpSetting.sh /root/ftpSetting.sh
 
 COPY file/vsftpd.conf /etc/
-RUN chmod +x /root/add_ftp_user.sh
-CMD /root/add_ftp_user.sh; chmod 777 /mnt/ftp-dir/; service vsftpd start; while true; do sleep 2; done
+RUN chmod +x /root/ftpSetting.sh
+CMD /root/ftpSetting.sh; chmod 777 /mnt/ftp-dir/; service vsftpd start; while true; do sleep 2; done
