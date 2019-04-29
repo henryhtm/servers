@@ -5,8 +5,9 @@ fi
 if [ "$FTPMODE"X = "PASV"X -o "$FTPMODE"X = "pasv"X ] ; then
         export FTPMODE="PASV"
         echo "PASV_enable=YES" >> /etc/vsftpd.conf
-        if [ "$FTPADDR"X != ""X] ; then
+        if [ "$FTPADDR"X != ""X ] ; then
                 echo "pasv_address=$FTPADDR" >> /etc/vsftpd.conf
+                echo "pasv_addr_resolve=yes" >> /etc/vsftpd.conf
         fi
         if [ "$PASVPRANGE"X != ""X ] ; then
                 minPort=$(echo $PASVPRANGE | cut -d , -f 1)
