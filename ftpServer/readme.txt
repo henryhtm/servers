@@ -6,4 +6,8 @@ This doc tells you how to use this image.
 
 2. Use the following command to run the server:
     docker run -d -p 20:20/udp -p 21:21 -v /host/data/dir/:/mnt/ftp-dir CONTAINER_NAME
+   You can also specify the user list of ftp as follow:
+    docker run -d -p 20:20/udp -p 21:21 -e 'USERLIST="ad,adminUser,adpasswd wr,writeUser,wrPasswd"' -v /host/data/dir/:/mnt/ftp-dir CONTAINER_NAME
+3. You can check the FTP users' info by command:
+    docker logs [containerID]
   
