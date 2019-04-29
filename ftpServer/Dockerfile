@@ -9,4 +9,4 @@ COPY file/ftpSetting.sh /root/ftpSetting.sh
 
 COPY file/vsftpd.conf /etc/
 RUN chmod +x /root/ftpSetting.sh
-CMD /root/ftpSetting.sh; chmod 555 /mnt/ftp-dir; service vsftpd start; while true; do sleep 2; done
+CMD /root/ftpSetting.sh; chmod 555 /mnt/ftp-dir; chmod 777 /mnt/ftp-dir/* service vsftpd start; while true; do sleep 2; done
