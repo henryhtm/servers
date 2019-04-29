@@ -2,6 +2,23 @@
 if [ "$USERLIST"X = ""X ] ; then
         export USERLIST="WR,ftp-read,rd1354 ad,ftp-admin,a1313n"
 fi
+if [ "$FTPMODE"X = "PASV"X -o "$FTPMODE"X = "pasv"X ] ; then
+        export FTPMODE="PASV"
+        echo "PASV_enable=YES" >> /etc/vsftpd.conf
+        if [ "$FTPADDR"X != ""X] ; then
+                echo "pasv_address=$FTPADDR" >> /etc/vsftpd.conf
+        fi
+        if [ "$PASVPRANGE"X != ""X ] ; then
+                minPort=$(echo $PASVPRANGE | cut -d , -f 1)
+                maxPort=$(echo $PASVPRANGE | cut -d , -f 2)
+                echo "PASV_min_port=$minPort" >> /etc/vsftpd.conf
+                echo "PASV_max_port=$maxPort" >> /etc/vsftpd.conf
+        fi
+else
+        export FTPMODE="PORT"
+        echo "Port_enable=YES" >> /etc/vsftpd.conf
+        echo "Connect_from_port_20=YES" >> /etc/vsftpd.conf
+fi
 for userInfo in $USERLIST
 do
         uType=$(echo $userInfo|cut -d , -f 1)
