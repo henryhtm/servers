@@ -4,7 +4,7 @@ if [ "$USERLIST"X = ""X ] ; then
 fi
 if [ "$FTPMODE"X = "PASV"X -o "$FTPMODE"X = "pasv"X ] ; then
         export FTPMODE="PASV"
-        echo "PASV_enable=YES" >> /etc/vsftpd.conf
+        echo "pasv_enable=YES" >> /etc/vsftpd.conf
         if [ "$FTPADDR"X != ""X ] ; then
                 echo "pasv_address=$FTPADDR" >> /etc/vsftpd.conf
                 echo "pasv_addr_resolve=yes" >> /etc/vsftpd.conf
@@ -12,13 +12,13 @@ if [ "$FTPMODE"X = "PASV"X -o "$FTPMODE"X = "pasv"X ] ; then
         if [ "$PASVPRANGE"X != ""X ] ; then
                 minPort=$(echo $PASVPRANGE | cut -d , -f 1)
                 maxPort=$(echo $PASVPRANGE | cut -d , -f 2)
-                echo "PASV_min_port=$minPort" >> /etc/vsftpd.conf
-                echo "PASV_max_port=$maxPort" >> /etc/vsftpd.conf
+                echo "pasv_min_port=$minPort" >> /etc/vsftpd.conf
+                echo "pasv_max_port=$maxPort" >> /etc/vsftpd.conf
         fi
 else
         export FTPMODE="PORT"
-        echo "Port_enable=YES" >> /etc/vsftpd.conf
-        echo "Connect_from_port_20=YES" >> /etc/vsftpd.conf
+        echo "port_enable=YES" >> /etc/vsftpd.conf
+        echo "connect_from_port_20=YES" >> /etc/vsftpd.conf
 fi
 for userInfo in $USERLIST
 do
