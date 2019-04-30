@@ -62,8 +62,8 @@ do
                         echo "Invalid UserType:"$uType
                         continue
                 fi
-                useradd -m $uName 1&>/dev/null
-                echo -e $uPwd"\n"$uPwd | passwd $uName 1&>/dev/null
+                useradd -m $uName 
+                echo -e $uPwd"\n"$uPwd | passwd $uName 
         fi
 done
 
