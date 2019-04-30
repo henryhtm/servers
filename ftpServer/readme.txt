@@ -26,7 +26,7 @@ Examples of command:
       docker run -d -p 20-21:20-21 -e "USERLIST=AD,sample-admin,smpwd112233" -v /ftproot_dir/:/mnt/ftp-dir CONTAINER_NAME
    
    * Run the ftp server in PASV mode, port ranges (10330-10360), adminUser(padmin1:passwd1a) and readonlyUser(rduser:pwd4rd):
-      docker run -d -p 21:21 -p 10330-10360:10330-10360 -e "USERLIST=AD,padmin1,passwd1a RD,rduser,pwd4rd" -v /ftproot_dir/:/mnt/ftp-dir CONTAINER_NAME
+      docker run -d -p 10330-10360:10330-10360  -p 21:21 -e "USERLIST=AD,padmin1,passwd1a RD,rduser,pwd4rd" -e "FTPMODE=PASV" -e "FTPADDR=66.77.88.99" -e "PASVPRANGE=10330,10360" -v /ftproot_dir/:/mnt/ftp-dir CONTAINER_NAME
 
 After running the container, you can get the FTP information by the following command:
     docker logs [containerID]
