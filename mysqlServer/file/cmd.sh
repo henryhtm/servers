@@ -4,13 +4,14 @@ if [ "$EXT_PORT"X != ""X ] ; then
   sed -i "/^port/i\port\t\t= $EXT_PORT" $CONF_FILE && sed -i "/^port/n; /^port/d" $CONF_FILE
 fi
 if [ "$DATA_DIR"X != ""X ] ; then
+  sed -i "/^log_error/i\log_error\t\t= $DATA_DIR/error.log" $CONF_FILE && sed -i "/^log_error/n; /^log_error/d" $CONF_FILE
   sed -i "/^datadir/i\datadir\t\t= $DATA_DIR" $CONF_FILE && sed -i "/^datadir/n; /^datadir/d" $CONF_FILE
   chmod +222 $DATA_DIR
-  if [ -e "$DATA_DIR/ibdata1" ] ; then
-    grep "A temporary password" /var/log/mysql/error.log
+  if [ -e "$DATA_DIR/ibdata1" -a -e "$DATA_DIR/error.log" ] ; then
+    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 4-
   else
     mysqld --initialize
-    grep "A temporary password" /var/log/mysql/error.log
+    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 4-
   fi
 fi
 
