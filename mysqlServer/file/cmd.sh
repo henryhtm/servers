@@ -8,10 +8,11 @@ if [ "$DATA_DIR"X != ""X ] ; then
   sed -i "/^datadir/i\datadir\t\t= $DATA_DIR" $CONF_FILE && sed -i "/^datadir/n; /^datadir/d" $CONF_FILE
   chmod +222 $DATA_DIR
   if [ -e "$DATA_DIR/ibdata1" -a -e "$DATA_DIR/error.log" ] ; then
-    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 4-
+    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 10-
   else
+    rm $DATA_DIR/* -rf
     mysqld --initialize
-    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 4-
+    grep "A temporary password" $DATA_DIR/error.log | cut -d ' ' -f 10-
   fi
 fi
 
