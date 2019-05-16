@@ -31,6 +31,9 @@ else
         echo "port_enable=YES" >> /etc/vsftpd.conf
         echo "connect_from_port_20=YES" >> /etc/vsftpd.conf
 fi
+if [ "$SSL"X != "NO"X -a"$SSL"X != "no"X ] ; then
+        echo "ssl_enable=YES" >> /etc/vsftpd.conf
+fi
 for userInfo in $USERLIST
 do
         uType=$(echo $userInfo|cut -d , -f 1)
