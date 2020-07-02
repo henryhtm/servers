@@ -50,6 +50,13 @@ do
                         echo -e "---------------------------------\n"
                         echo -e "local_root=/mnt/ftp-dir" > /etc/vsftpd/user_config/$uName
                         echo -e "write_enable=NO" >> /etc/vsftpd/user_config/$uName
+                elif [ "$uType"x = "AN"x -o "$uType"x = "an"x ] ; then
+                        echo -e "----------anonymous User----------"
+                        echo -e "    UserName: "anonymous"\n    Passwd: None"
+                        echo -e "---------------------------------\n"
+                        echo -e "anonymous_enable=YES" >> /etc/vsftpd.conf
+                        echo -e "anon_root=/mnt/ftp-dir" >> /etc/vsftpd.conf
+                        continue
                 elif [ "$uType"x = "AD"x -o "$uType"x = "ad"x ] ; then
                         echo -e "-----------Admin User-----------"
                         echo -e "    UserName: "$uName"\n    Passwd: "$uPwd
